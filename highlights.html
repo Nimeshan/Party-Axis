@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="theme-color" content="#000000">
+  <title>Party Axis | Highlights</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="highlights">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="logo" href="index.html"><img src="logo.jpg" alt="Party Axis"></a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="events.html">Events</a>
+        <a href="highlights.html">Highlights</a>
+      </nav>
+      <div class="header-actions">
+        <a class="plain-btn" href="#" data-auth-open="signup" role="button">Sign up</a>
+        <a class="plain-btn" href="#" data-auth-open="login" role="button">Login</a>
+        <a class="plain-btn" href="create-event.html">Publish an Ad</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="title-row">
+        <h1 class="section-title">Highlights</h1>
+        <div id="header-auth" class="header-auth"></div>
+      </div>
+      <p class="muted">Hand-picked listings from the community.</p>
+
+      <div id="events-grid" class="events-grid"></div>
+
+      <div class="panel newsletter">
+        <h2>Newsletter</h2>
+        <p class="muted">Get weekly drops in your city.</p>
+        <form id="newsletter-form">
+          <div class="newsletter-row">
+            <label class="sr-only" for="newsletter-email">Email</label>
+            <input id="newsletter-email" type="email" placeholder="you@example.com" autocomplete="email">
+            <button class="btn btn-small" type="button" id="newsletter-continue">Continue</button>
+          </div>
+          <div id="newsletter-consent-wrap" class="auth-step-hidden">
+            <label class="inline-check">
+              <input id="newsletter-consent" type="checkbox">
+              I agree to receive occasional marketing emails as described in the <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.
+            </label>
+            <div class="newsletter-row">
+              <button class="btn" type="submit">Subscribe</button>
+            </div>
+          </div>
+          <p id="newsletter-message" class="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>© <span id="year"></span> PartyAxis.com</div>
+      <div class="footer-links">
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+    </div>
+  </footer>
+  <script src="js/config.js"></script>
+  <script src="partyaxis.js"></script>
+</body>
+</html>

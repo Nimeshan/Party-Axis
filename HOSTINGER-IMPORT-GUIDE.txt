@@ -1,0 +1,73 @@
+PARTYAXIS HOSTINGER IMPORT GUIDE
+
+1) Upload website files
+- Upload all files/folders inside this ZIP to public_html.
+- Keep this structure:
+  public_html/index.html
+  public_html/partyaxis.js
+  public_html/bosslogin/index.html
+  public_html/api/*.php
+
+2) Create api/config.php
+- In public_html/api/, copy config.example.php and rename the copy to config.php.
+- Fill Hostinger MySQL details from hPanel > Databases > MySQL Databases.
+
+Example:
+return [
+  'db' => [
+    'host' => 'localhost',
+    'name' => 'u123456789_partyaxis',
+    'user' => 'u123456789_partyaxisuser',
+    'pass' => 'YOUR_PASSWORD',
+    'charset' => 'utf8mb4',
+  ],
+];
+
+3) Import SQL
+
+NEW database / empty database:
+- phpMyAdmin > your database > Import
+- Import: partyaxis_full_install.sql
+
+EXISTING database from old PartyAxis version:
+- phpMyAdmin > your database > Import or SQL tab
+- Run: partyaxis_upgrade_existing_db.sql
+
+If Hostinger gives duplicate index error on idx_events_highlight, ignore that line and continue.
+
+4) Create first admin
+- Register one normal account on your website first.
+- Then go phpMyAdmin > SQL and run:
+
+UPDATE users SET role = 'admin' WHERE email = 'your-email@example.com';
+
+5) Create moderator
+- The person must register an account first.
+- Then run:
+
+UPDATE users SET role = 'moderator' WHERE email = 'moderator@example.com';
+
+6) Admin/moderator login
+- Admin/moderator URL:
+  https://yourdomain.com/bosslogin/
+
+Admin can:
+- approve/reject/highlight/delete events
+- manage user roles
+- view newsletter subscribers
+- view audit logs
+
+Moderator can:
+- approve/reject/highlight/delete events
+- view audit logs
+
+Moderator cannot:
+- change user roles
+- view newsletter subscribers
+
+7) Check API path
+- js/config.js should have:
+  apiBase: "/api"
+
+If your site is inside a subfolder, change apiBase to:
+  apiBase: "/subfolder/api"

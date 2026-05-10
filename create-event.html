@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="theme-color" content="#000000">
+  <title>Party Axis | Create Event</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="create-event">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="logo" href="index.html"><img src="logo.jpg" alt="Party Axis"></a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="events.html">Events</a>
+        <a href="highlights.html">Highlights</a>
+      </nav>
+      <div class="header-actions">
+        <a class="plain-btn" href="#" data-auth-open="signup" role="button">Sign up</a>
+        <a class="plain-btn" href="#" data-auth-open="login" role="button">Login</a>
+        <a class="plain-btn" href="create-event.html">Publish an Ad</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="panel">
+        <h1 class="section-title">Create Event</h1>
+        <p class="muted">Signup first to publish an ad. Approved events are visible publicly.</p>
+        <form id="event-form" novalidate>
+          <label for="event-type">Event type</label>
+          <select id="event-type" required>
+            <option value="">Select event type</option>
+            <option>After Party</option>
+            <option>House Party</option>
+            <option>Club Night</option>
+            <option>Rooftop Party</option>
+            <option>Invite-Only</option>
+            <option>Other</option>
+          </select>
+
+          <label for="event-title">Event title</label>
+          <input id="event-title" type="text" placeholder="Axis Midnight Sessions" required>
+
+          <div class="double">
+            <div>
+              <label for="event-date">Date</label>
+              <input id="event-date" type="date" required>
+            </div>
+            <div>
+              <label for="event-time">Start time</label>
+              <input id="event-time" type="time" required>
+            </div>
+          </div>
+
+          <label for="event-location">Location</label>
+          <input id="event-location" type="text" placeholder="Downtown Los Angeles" required>
+
+          <label for="event-visibility">Visibility</label>
+          <select id="event-visibility">
+            <option value="public">Public</option>
+            <option value="invite_only">Invite only</option>
+          </select>
+
+          <label for="event-image">Image URL</label>
+          <input id="event-image" type="url" placeholder="https://...">
+
+          <label for="event-description">Details</label>
+          <textarea id="event-description" placeholder="Tell guests what to expect..." required></textarea>
+
+          <label>
+            <input id="event-terms" type="checkbox" required>
+            I confirm this listing is accurate and complies with the <a href="terms.html" target="_blank" rel="noopener">Terms &amp; Conditions</a>.
+          </label>
+
+          <button class="btn" type="submit">Submit for Approval</button>
+          <p id="event-message" class="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>© <span id="year"></span> PartyAxis.com</div>
+      <div class="footer-links">
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+    </div>
+  </footer>
+  <script src="js/config.js"></script>
+  <script src="partyaxis.js"></script>
+</body>
+</html>

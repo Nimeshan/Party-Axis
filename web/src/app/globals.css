@@ -1,0 +1,296 @@
+@import "tailwindcss";
+
+/* Explicit scan roots so utilities generate when `next dev` is started from a parent folder (cwd ≠ web/). */
+@source "../**/*.{js,ts,jsx,tsx}";
+
+/* Nightclub / after-hours — neon, deep black-violet floor, haze */
+:root {
+  --surface: #020102;
+  --surface-mid: #0a0512;
+  --card: #0e0818;
+  --card-elevated: #150d22;
+  --muted: #9b8fb8;
+  --text: #fff7ff;
+  --text-dim: #c9bdd9;
+  --border: rgba(255, 0, 120, 0.12);
+  --border-strong: rgba(0, 245, 255, 0.22);
+  --cyan: #00f5ff;
+  --cyan-strong: #00c8e8;
+  --accent-magenta: #ff2d95;
+  --accent-violet: #c026ff;
+  --accent-hot: #ff0a6c;
+  --ok: #39ff14;
+  --warn: #ffe600;
+  --cyan-glow: rgba(0, 245, 255, 0.55);
+  --cyan-soft: rgba(0, 245, 255, 0.28);
+  --pink-glow: rgba(255, 45, 149, 0.45);
+  --purple-glow: rgba(192, 38, 255, 0.35);
+  --pa-radius-lg: 0.375rem;
+  --pa-radius-xl: 0.65rem;
+  --pa-radius-2xl: 1rem;
+  --pa-content: min(1180px, calc(100vw - max(1.25rem, env(safe-area-inset-left) + env(safe-area-inset-right) + 0.5rem)));
+  --pa-gradient-text: linear-gradient(
+    105deg,
+    var(--cyan) 0%,
+    var(--accent-violet) 42%,
+    var(--accent-magenta) 72%,
+    var(--accent-hot) 100%
+  );
+  --pa-gradient-cta: linear-gradient(
+    118deg,
+    var(--cyan) 0%,
+    var(--accent-violet) 38%,
+    var(--accent-magenta) 68%,
+    var(--accent-hot) 100%
+  );
+  --pa-gradient-floor: linear-gradient(180deg, rgba(255, 10, 108, 0.15) 0%, transparent 38%);
+
+  color-scheme: dark;
+}
+
+@theme inline {
+  --font-sans: var(--font-inter), "Inter", ui-sans-serif, system-ui, sans-serif;
+  --color-background: var(--surface);
+  --color-foreground: var(--text);
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100%;
+  position: relative;
+  isolation: isolate;
+  color: var(--text);
+  font-family: var(--font-inter), "Inter", system-ui, sans-serif;
+  letter-spacing: -0.018em;
+  line-height: 1.55;
+  background-color: var(--surface);
+  background-image:
+    radial-gradient(ellipse 80% 60% at 50% 120%, rgba(255, 10, 108, 0.16) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 50% at 50% -15%, rgba(192, 38, 255, 0.35) 0%, transparent 50%),
+    radial-gradient(ellipse 45% 40% at 100% 30%, rgba(0, 245, 255, 0.12) 0%, transparent 45%),
+    radial-gradient(ellipse 50% 45% at 0% 60%, rgba(255, 45, 149, 0.08) 0%, transparent 45%),
+    linear-gradient(180deg, #030008 0%, var(--surface) 45%, #010006 100%);
+  background-attachment: fixed;
+}
+
+/* Film grain */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
+}
+
+/* Subtle scanlines — club screen vibe */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.04;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 245, 255, 0.07) 2px,
+    rgba(0, 245, 255, 0.07) 3px
+  );
+}
+
+a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+::selection {
+  background: rgba(255, 45, 149, 0.45);
+  color: var(--surface);
+}
+
+/* Poster / marquee headlines */
+.pa-headline {
+  font-family: var(--font-display), Impact, "Arial Narrow", sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 0.9;
+}
+
+.pa-club-sub {
+  font-family: var(--font-display), Impact, sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.75rem;
+}
+
+.pa-sticky-stack {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  border-bottom: 1px solid rgba(255, 45, 149, 0.22);
+  background: color-mix(in oklab, #06020e 72%, transparent);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  box-shadow:
+    0 4px 32px rgba(0, 0, 0, 0.75),
+    0 0 40px rgba(0, 245, 255, 0.05),
+    inset 0 -1px 0 rgba(0, 245, 255, 0.12);
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
+.pa-page-root {
+  position: relative;
+  z-index: 1;
+}
+
+.pa-panel {
+  border-radius: var(--pa-radius-2xl);
+  border: 1px solid rgba(0, 245, 255, 0.18);
+  background: linear-gradient(165deg, rgba(22, 8, 32, 0.97) 0%, rgba(6, 2, 12, 0.98) 100%);
+  box-shadow:
+    0 0 0 1px rgba(255, 45, 149, 0.12) inset,
+    0 0 80px rgba(192, 38, 255, 0.08),
+    0 28px 90px rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.pa-glass-soft {
+  background: linear-gradient(145deg, rgba(255, 45, 149, 0.06) 0%, rgba(0, 245, 255, 0.04) 100%);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.pa-section-eyebrow {
+  font-family: var(--font-display), Impact, sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--accent-magenta);
+  text-shadow: 0 0 24px var(--pink-glow);
+}
+
+@media (max-width: 639px) {
+  .pa-section-eyebrow {
+    letter-spacing: 0.22em;
+    font-size: 0.75rem;
+  }
+
+  .pa-club-sub {
+    letter-spacing: 0.16em;
+    font-size: 0.7rem;
+  }
+
+  body::after {
+    opacity: 0.025;
+  }
+}
+
+@keyframes pa-fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 22px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes pa-neon-pulse {
+  0%,
+  100% {
+    opacity: 0.85;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1.12);
+  }
+}
+
+.pa-fade-up {
+  animation: pa-fade-up 0.85s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.pa-delay-1 {
+  animation-delay: 0.12s;
+}
+
+.pa-btn-primary {
+  position: relative;
+  background-image: var(--pa-gradient-cta);
+  background-size: 120% 120%;
+  transition: filter 0.2s ease, box-shadow 0.25s ease, transform 0.2s ease;
+  box-shadow:
+    0 0 28px rgba(0, 245, 255, 0.25),
+    0 0 48px rgba(255, 45, 149, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 800;
+}
+
+.pa-btn-primary:hover {
+  filter: brightness(1.12) saturate(1.1);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    0 0 40px rgba(0, 245, 255, 0.45),
+    0 0 72px rgba(255, 45, 149, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.pa-btn-primary:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+.pa-neon-edge {
+  box-shadow:
+    0 0 0 1px rgba(0, 245, 255, 0.25),
+    0 0 32px rgba(255, 45, 149, 0.12);
+}
+
+.pa-carousel {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 45, 149, 0.45) transparent;
+}
+
+.pa-carousel::-webkit-scrollbar {
+  height: 5px;
+}
+
+.pa-carousel::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, var(--cyan), var(--accent-magenta));
+  border-radius: 999px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .pa-fade-up,
+  .pa-delay-1 {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .pa-btn-primary:hover {
+    transform: none;
+  }
+}
