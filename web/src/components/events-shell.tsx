@@ -41,11 +41,11 @@ export function EventsShell({ events, publishHref = "/publish" }: { events: Part
       <section
         id="highlights"
         aria-label="Highlighted events"
-        className="relative scroll-mt-36 bg-[linear-gradient(180deg,rgba(10,14,24,0.5),transparent)] py-14 sm:scroll-mt-40 sm:py-20"
+        className="relative scroll-mt-36 bg-gradient-to-b from-slate-900/22 via-transparent to-transparent py-14 sm:scroll-mt-40 sm:py-20"
       >
         <div className="mx-auto mb-10 flex w-[var(--pa-content)] flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="pa-section-eyebrow">Strobe rail</p>
+            <p className="pa-section-eyebrow text-indigo-300/85">Strobe rail</p>
             <div className="mt-4 flex flex-col gap-2">
               <h2 className="pa-headline text-[clamp(1.85rem,5vw,2.6rem)] text-[var(--text)]">
                 Hand-picked highlights
@@ -56,14 +56,14 @@ export function EventsShell({ events, publishHref = "/publish" }: { events: Part
             </div>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <span className="rounded-md border border-[var(--cyan)]/30 bg-[rgba(0,245,255,0.06)] px-3.5 py-2 font-mono text-[0.75rem] font-bold uppercase tracking-wide text-[var(--cyan)] shadow-[0_0_20px_rgba(0,245,255,0.12)]">
+            <span className="rounded-full border border-teal-400/22 bg-teal-400/[0.06] px-3.5 py-2 font-mono text-[0.75rem] font-bold uppercase tracking-wide text-teal-200 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]">
               {events.length === 0 ? "Moderation queue warming" : `${highlights.length} featured · ${events.length} total live`}
             </span>
           </div>
         </div>
 
         {highlights.length === 0 ? (
-          <div className="mx-auto mb-16 w-[var(--pa-content)] rounded-[var(--pa-radius-2xl)] border border-dashed border-[var(--border-strong)] bg-[rgba(8,12,22,0.55)] px-6 py-14 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] backdrop-blur-xl sm:px-10">
+          <div className="mx-auto mb-16 w-[var(--pa-content)] rounded-3xl border border-dashed border-white/[0.1] bg-[rgba(15,23,42,0.45)] px-6 py-14 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] backdrop-blur-xl sm:px-10">
             <p className="mx-auto max-w-lg text-[0.98rem] leading-relaxed text-[var(--muted)]">
               <span className="font-semibold text-[var(--text)]">Quiet stage.</span> When moderators tag a highlight it
               lands here instantly. Meanwhile, jump down to Explorer or tee up{" "}
@@ -100,7 +100,7 @@ export function EventsShell({ events, publishHref = "/publish" }: { events: Part
 
       <section
         id="browse"
-        className="scroll-mt-36 border-t border-[var(--border)] bg-[linear-gradient(180deg,rgba(6,8,14,0.85),rgba(4,6,12,0.98))] pb-24 pt-14 sm:scroll-mt-40 sm:pb-32 sm:pt-20"
+        className="scroll-mt-36 border-t border-white/[0.06] bg-gradient-to-b from-[rgba(15,23,42,0.42)] via-[rgba(2,6,23,0.88)] to-[rgba(2,6,23,0.98)] pb-24 pt-14 sm:scroll-mt-40 sm:pb-32 sm:pt-20"
       >
         <div className="mx-auto w-[var(--pa-content)]">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">

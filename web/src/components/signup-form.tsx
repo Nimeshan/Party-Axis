@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useId, useState } from "react";
+import { useRouter } from "next/navigation";
+import { useId, useState } from "react";
 
 function validEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim());
@@ -15,15 +16,15 @@ function passwordIssues(password: string): string[] {
   return issues;
 }
 
-/** Client-side check: user is 18+ from YYYY-MM-DD */
-function isAdultDob(isoDate: string) {
+/** Client-side check: minimum age from YYYY-MM-DD (matches PHP `age_21_plus`). */
+function minAge(isoDate: string, years: number) {
   const d = new Date(isoDate + "T12:00:00");
   if (Number.isNaN(d.getTime())) return false;
   const now = new Date();
   let age = now.getFullYear() - d.getFullYear();
   const m = now.getMonth() - d.getMonth();
   if (m < 0 || (m === 0 && now.getDate() < d.getDate())) age--;
-  return age >= 18;
+  return age >= years;
 }
 
 export function SignupForm() {
@@ -38,17 +39,11 @@ export function SignupForm() {
   const termsId = useId();
   const marketingId = useId();
 
+  const router = useRouter();
   const [error, setError] = useState<string | null>(null);
-  const [done, setDone] = useState(false);
-  /** Set after mount so SSR HTML matches first client render (avoids hydration errors). */
-  const [maxDob, setMaxDob] = useState("");
-  useEffect(() => {
-    const t = new Date();
-    t.setFullYear(t.getFullYear() - 18);
-    setMaxDob(t.toISOString().slice(0, 10));
-  }, []);
+  const [submitting, setSubmitting] = useState(false);
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError(null);
     const fd = new FormData(e.currentTarget);
@@ -74,6 +69,10 @@ export function SignupForm() {
       setError("Enter a valid phone number, or leave it blank.");
       return;
     }
+    if (password.length < 8) {
+      setError("Password must be at least 8 characters.");
+      return;
+    }
     const pIssues = passwordIssues(password);
     if (pIssues.length) {
       setError(`Password needs ${pIssues.join(", ")}.`);
@@ -84,11 +83,11 @@ export function SignupForm() {
       return;
     }
     if (!dob) {
-      setError("Date of birth is required (18+ for nightlife listings).");
+      setError("Date of birth is required (21+).");
       return;
     }
-    if (!isAdultDob(dob)) {
-      setError("You must be 18 or older to create an account.");
+    if (!minAge(dob, 21)) {
+      setError("You must be 21 or older to create an account.");
       return;
     }
     if (!intent) {
@@ -105,25 +104,33 @@ export function SignupForm() {
     }
 
     void city;
-    setDone(true);
-  }
 
-  if (done) {
-    return (
-      <div className="rounded-xl border border-[var(--cyan-soft)] bg-[rgba(0,212,232,0.06)] px-4 py-5 text-sm leading-relaxed text-[var(--text)]">
-        <p className="font-semibold text-[var(--ok)]">Thanks — you&apos;re on the list</p>
-        <p className="mt-2 text-[var(--muted)]">
-          Registration isn&apos;t wired to a server yet. Your details were validated in the browser only. Connect this
-          form to your API when accounts go live.
-        </p>
-        <Link
-          href="/login"
-          className="mt-4 inline-flex font-semibold text-[var(--cyan)] no-underline hover:underline"
-        >
-          Go to log in
-        </Link>
-      </div>
-    );
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/register", {
+        method: "POST",
+        credentials: "include",
+        headers: { Accept: "application/json", "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: email.trim(),
+          password,
+          terms_accepted: terms,
+          privacy_accepted: terms,
+          rules_accepted: terms,
+          age_21_plus: minAge(dob, 21),
+        }),
+      });
+      const data: { ok?: boolean; error?: string } = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) {
+        setError(typeof data.error === "string" ? data.error : "Couldn’t create account. Try again.");
+        return;
+      }
+      router.replace("/publish");
+    } catch {
+      setError("Couldn’t reach the server. Check your connection and try again.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -219,10 +226,9 @@ export function SignupForm() {
             name="dob"
             type="date"
             required
-            max={maxDob || undefined}
             className="rounded-xl border border-[var(--border)] bg-[rgba(5,8,14,0.85)] px-4 py-3 text-[var(--text)] focus:border-[var(--cyan)] focus:outline-none focus:ring-2 focus:ring-[var(--cyan-soft)]"
           />
-          <p className="text-xs text-[var(--muted)]">You must be 18+ to use nightlife features in most regions.</p>
+          <p className="text-xs text-[var(--muted)]">You must be 21+ to register (aligned with venue policies).</p>
         </div>
         <div className="flex flex-col gap-2">
           <label htmlFor={cityId} className="text-sm font-semibold text-[var(--text)]">
@@ -318,8 +324,12 @@ export function SignupForm() {
         </span>
       </label>
 
-      <button type="submit" className="pa-btn-primary mt-1 w-full rounded-full py-3.5 text-base font-extrabold text-[var(--surface)] no-underline">
-        Create account
+      <button
+        type="submit"
+        disabled={submitting}
+        className="pa-btn-primary mt-1 w-full rounded-full py-3.5 text-base font-extrabold text-[var(--surface)] no-underline disabled:cursor-not-allowed disabled:opacity-60"
+      >
+        {submitting ? "Creating account…" : "Create account"}
       </button>
 
       <p className="text-center text-sm text-[var(--muted)]">

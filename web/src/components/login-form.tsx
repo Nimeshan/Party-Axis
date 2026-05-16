@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useId, useState } from "react";
 
 function validEmail(value: string) {
@@ -8,13 +9,14 @@ function validEmail(value: string) {
 }
 
 export function LoginForm() {
+  const router = useRouter();
   const emailId = useId();
   const passwordId = useId();
   const rememberId = useId();
   const [error, setError] = useState<string | null>(null);
-  const [done, setDone] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError(null);
     const fd = new FormData(e.currentTarget);
@@ -30,25 +32,25 @@ export function LoginForm() {
       return;
     }
 
-    setDone(true);
-  }
-
-  if (done) {
-    return (
-      <div className="rounded-xl border border-[var(--cyan-soft)] bg-[rgba(0,212,232,0.06)] px-4 py-5 text-sm leading-relaxed text-[var(--text)]">
-        <p className="font-semibold text-[var(--ok)]">Check your details</p>
-        <p className="mt-2 text-[var(--muted)]">
-          Party Axis sign-in is not connected to a live account system yet. We captured your attempt locally — hook this
-          form to your backend when you&apos;re ready.
-        </p>
-        <Link
-          href="/"
-          className="mt-4 inline-flex font-semibold text-[var(--cyan)] no-underline hover:underline"
-        >
-          Back to home
-        </Link>
-      </div>
-    );
+    setSubmitting(true);
+    try {
+      const res = await fetch("/api/login", {
+        method: "POST",
+        credentials: "include",
+        headers: { Accept: "application/json", "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email.trim(), password }),
+      });
+      const data: { ok?: boolean; error?: string } = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) {
+        setError(typeof data.error === "string" ? data.error : "Couldn’t sign in. Try again.");
+        return;
+      }
+      router.replace("/publish");
+    } catch {
+      setError("Couldn’t reach the server. Check your connection and try again.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -111,8 +113,12 @@ export function LoginForm() {
         </span>
       </label>
 
-      <button type="submit" className="pa-btn-primary mt-1 w-full rounded-full py-3.5 text-base font-extrabold text-[var(--surface)] no-underline">
-        Log in
+      <button
+        type="submit"
+        disabled={submitting}
+        className="pa-btn-primary mt-1 w-full rounded-full py-3.5 text-base font-extrabold text-[var(--surface)] no-underline disabled:cursor-not-allowed disabled:opacity-60"
+      >
+        {submitting ? "Signing in…" : "Log in"}
       </button>
 
       <p className="text-center text-sm text-[var(--muted)]">

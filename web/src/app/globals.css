@@ -154,6 +154,11 @@ a {
   z-index: 1;
 }
 
+/* Stacks ambient layers cleanly when home adds gradient meshes under `<main>` */
+.pa-home {
+  isolation: isolate;
+}
+
 .pa-panel {
   border-radius: var(--pa-radius-2xl);
   border: 1px solid rgba(0, 245, 255, 0.18);

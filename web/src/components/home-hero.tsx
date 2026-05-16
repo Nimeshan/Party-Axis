@@ -4,61 +4,66 @@ type HomeHeroProps = {
 
 export function HomeHero({ publishHref }: HomeHeroProps) {
   return (
-    <section className="relative overflow-hidden pb-24 pt-12 sm:pt-16 md:pb-32">
-      {/* Haze & strobes */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-[25%] top-[-40%] h-[min(620px,110vw)] w-[min(620px,110vw)] rounded-full bg-[radial-gradient(circle_at_center,rgba(0,245,255,0.14),transparent_65%)] blur-3xl motion-safe:opacity-90" />
-        <div className="absolute -right-[5%] top-[0%] h-[min(520px,95vw)] w-[min(560px,100vw)] rounded-full bg-[radial-gradient(circle_at_center,rgba(192,38,255,0.18),transparent_62%)] blur-3xl" />
-        <div className="absolute bottom-[-45%] left-[20%] h-[min(520px,90vw)] w-[min(520px,90vw)] rounded-full bg-[radial-gradient(circle_at_center,rgba(255,45,149,0.14),transparent_68%)] blur-3xl" />
-        <div className="absolute right-[5%] top-[40%] h-px w-[min(240px,40vw)] rotate-[12deg] bg-gradient-to-r from-transparent via-[var(--cyan)] to-transparent opacity-70" />
-        <div className="absolute left-[8%] bottom-[32%] h-px w-[min(180px,35vw)] -rotate-[8deg] bg-gradient-to-r from-transparent via-[var(--accent-magenta)] to-transparent opacity-60" />
+    <section className="relative overflow-hidden pb-24 pt-14 sm:pt-20 md:pb-36">
+      {/* Light structural accents — mesh + faint beams (hero blobs live on page shell) */}
+      <div className="pointer-events-none absolute inset-0 opacity-[0.85]">
+        <div
+          className="absolute inset-0 opacity-[0.35]"
+          style={{
+            backgroundImage: `linear-gradient(rgba(148,163,184,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.05)_1px,transparent_1px)`,
+            backgroundSize: "48px 48px",
+            maskImage: "linear-gradient(180deg,black,transparent)",
+          }}
+        />
+        <div className="absolute right-[8%] top-[38%] h-px w-[min(220px,38vw)] rotate-[11deg] bg-gradient-to-r from-transparent via-teal-400/45 to-transparent" />
+        <div className="absolute left-[10%] bottom-[28%] h-px w-[min(160px,34vw)] -rotate-[7deg] bg-gradient-to-r from-transparent via-indigo-400/35 to-transparent" />
       </div>
 
       <div className="relative mx-auto w-[var(--pa-content)]">
-        <div className="grid items-start gap-16 lg:grid-cols-[minmax(0,1.08fr)_minmax(280px,0.92fr)] lg:gap-12">
+        <div className="grid items-start gap-16 lg:grid-cols-[minmax(0,1.08fr)_minmax(280px,0.92fr)] lg:gap-14">
           <div className="pa-fade-up">
-            <div className="inline-flex items-center gap-3 border-l-4 border-[var(--accent-hot)] bg-[rgba(255,10,108,0.08)] px-4 py-2.5 pr-5 shadow-[0_0_32px_rgba(255,45,149,0.12)]">
+            <div className="inline-flex items-center gap-3 rounded-full border border-white/[0.12] bg-[rgba(15,23,42,0.45)] px-4 py-2.5 pr-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-md">
               <span className="relative flex h-2.5 w-2.5 items-center justify-center">
-                <span className="absolute inline-flex h-full w-full rounded-full bg-[var(--ok)] opacity-50 motion-safe:animate-ping" />
-                <span className="relative inline-flex h-2 w-2 rounded-sm bg-[var(--ok)] shadow-[0_0_14px_var(--ok)]" />
+                <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400/80 opacity-40 motion-safe:animate-ping" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.65)]" />
               </span>
-              <span className="pa-club-sub text-[var(--text)]">
-                Singapore · regional nights · <span className="text-[var(--cyan)]">doors open</span>
+              <span className="pa-club-sub text-[var(--text-dim)]">
+                Singapore · regional nights · <span className="text-teal-300/95">doors open</span>
               </span>
             </div>
 
-            <div className="relative mt-10">
-              <p className="pa-headline text-[clamp(2.75rem,10vw,5.75rem)] text-[var(--text)]">
-                Where <span className="text-[var(--text-dim)]">night</span>
-                <span className="text-[var(--accent-magenta)]">life</span>
+            <div className="relative mt-11">
+              <p className="pa-headline text-[clamp(2.65rem,9.5vw,5.5rem)] tracking-[0.03em] text-[var(--text)]">
+                Where <span className="text-slate-400/95">night</span>
+                <span className="text-fuchsia-400/95">life</span>
               </p>
-              <p className="pa-headline mt-1 bg-[image:var(--pa-gradient-text)] bg-clip-text text-[clamp(2.75rem,10vw,5.75rem)] text-transparent">
+              <p className="pa-headline mt-2 bg-gradient-to-br from-teal-200 via-indigo-200 to-fuchsia-300 bg-clip-text text-[clamp(2.65rem,9.5vw,5.5rem)] tracking-[0.03em] text-transparent">
                 finds gravity
               </p>
-              <div className="mt-6 h-1 w-full max-w-[12rem] bg-[image:var(--pa-gradient-cta)] shadow-[0_0_20px_var(--pink-glow)]" />
+              <div className="mt-7 h-[3px] w-full max-w-[10rem] rounded-full bg-gradient-to-r from-teal-400/90 via-indigo-400/85 to-fuchsia-400/90 opacity-90 shadow-[0_0_28px_rgba(45,212,191,0.25)]" />
             </div>
 
-            <p className="mt-8 max-w-xl text-pretty text-base font-medium leading-relaxed text-[var(--muted)] sm:text-lg">
+            <p className="mt-9 max-w-xl text-pretty text-base font-normal leading-[1.65] text-slate-400 sm:text-[1.0625rem]">
               The listings board built like a basement rave: loud discovery, tight moderation, and a lane for promoters
               who keep the night honest.
             </p>
 
-            <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+            <div className="mt-11 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <a
                 href="#browse"
-                className="pa-btn-primary inline-flex min-h-12 w-full items-center justify-center rounded-md px-8 py-3.5 text-xs text-[#050108] no-underline sm:w-auto sm:min-h-0 sm:text-sm"
+                className="pa-btn-primary inline-flex min-h-12 w-full items-center justify-center rounded-full px-8 py-3.5 text-xs text-[#050108] no-underline sm:w-auto sm:min-h-0 sm:text-sm"
               >
                 Enter the floor
               </a>
               <a
                 href="#highlights"
-                className="inline-flex min-h-12 w-full items-center justify-center rounded-md border border-[var(--accent-magenta)]/50 bg-[rgba(255,45,149,0.06)] px-8 py-3.5 text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--text)] no-underline shadow-[0_0_24px_rgba(255,45,149,0.15)] transition hover:border-[var(--cyan)] hover:bg-[rgba(0,245,255,0.08)] hover:shadow-[0_0_28px_rgba(0,245,255,0.2)] sm:w-auto sm:min-h-0 sm:text-sm"
+                className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-white/14 bg-white/[0.04] px-8 py-3.5 text-xs font-extrabold uppercase tracking-[0.14em] text-[var(--text)] no-underline shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-sm transition hover:border-teal-400/35 hover:bg-teal-400/[0.07] hover:text-teal-100 sm:w-auto sm:min-h-0 sm:text-sm"
               >
                 Spotlight only
               </a>
               <a
                 href={publishHref}
-                className="inline-flex min-h-12 w-full items-center justify-center rounded-md border border-dashed border-[var(--cyan)]/40 bg-transparent px-8 py-3.5 text-xs font-extrabold uppercase tracking-[0.12em] text-[var(--cyan)] no-underline transition hover:border-[var(--accent-magenta)] hover:text-[var(--accent-magenta)] sm:w-auto sm:min-h-0 sm:text-sm"
+                className="inline-flex min-h-12 w-full items-center justify-center rounded-full border border-dashed border-teal-400/35 bg-transparent px-8 py-3.5 text-xs font-extrabold uppercase tracking-[0.12em] text-teal-300/95 no-underline transition hover:border-fuchsia-400/45 hover:text-fuchsia-200 sm:w-auto sm:min-h-0 sm:text-sm"
               >
                 Run an ad
               </a>
@@ -72,9 +77,9 @@ export function HomeHero({ publishHref }: HomeHeroProps) {
               ].map((row) => (
                 <div
                   key={row.k}
-                  className="rounded-[var(--pa-radius-xl)] border border-[var(--border)] bg-[rgba(12,4,20,0.75)] px-4 py-4 shadow-[inset_0_0_0_1px_rgba(0,245,255,0.06)] transition hover:border-[var(--cyan)]/35 hover:shadow-[0_0_24px_rgba(0,245,255,0.08)]"
+                  className="rounded-2xl border border-white/[0.08] bg-[rgba(15,23,42,0.42)] px-4 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] backdrop-blur-md transition hover:border-teal-400/22 hover:bg-[rgba(15,23,42,0.55)]"
                 >
-                  <dt className="pa-club-sub text-[0.65rem] text-[var(--accent-magenta)]">{row.k}</dt>
+                  <dt className="pa-club-sub text-[0.65rem] text-teal-300/90">{row.k}</dt>
                   <dd className="mt-2 text-[0.82rem] font-semibold leading-snug text-[var(--text)]">{row.v}</dd>
                 </div>
               ))}
@@ -82,58 +87,58 @@ export function HomeHero({ publishHref }: HomeHeroProps) {
 
             <a
               href="#highlights"
-              className="mt-16 inline-flex min-h-11 items-center gap-2 pa-club-sub text-[var(--muted)] no-underline transition hover:text-[var(--cyan)]"
+              className="mt-16 inline-flex min-h-11 items-center gap-2 pa-club-sub text-slate-500 no-underline transition hover:text-teal-300"
             >
               Drop in
-              <span className="motion-safe:inline-block motion-safe:animate-bounce text-lg leading-none text-[var(--accent-magenta)]" aria-hidden>
+              <span className="motion-safe:inline-block motion-safe:animate-bounce text-lg leading-none text-fuchsia-400/90" aria-hidden>
                 ↓
               </span>
             </a>
           </div>
 
-          <aside className="relative overflow-hidden rounded-[var(--pa-radius-2xl)] border border-[var(--accent-magenta)]/35 bg-[linear-gradient(165deg,rgba(40,6,48,0.5),rgba(6,2,14,0.92))] p-6 pa-neon-edge pa-fade-up pa-delay-1 sm:p-8">
-            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(125deg,rgba(0,245,255,0.1),transparent_55%)]" />
-            <div className="pointer-events-none absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%22120%22%20height=%22120%22%20viewBox=%220%200%20120%20120%22%3E%3Cfilter%20id=%22n%22%3E%3CfeTurbulence%20type=%22fractalNoise%22%20baseFrequency=%220.85%22%20numOctaves=%222%22%20stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect%20width=%22120%22%20height=%22120%22%20filter=%22url(%23n)%22%20opacity=%220.06%22/%3E%3C/svg%3E')] opacity-[0.85]" />
+          <aside className="relative overflow-hidden rounded-3xl border border-white/[0.1] bg-gradient-to-br from-slate-900/65 via-[rgba(15,23,42,0.55)] to-[rgba(2,6,23,0.92)] p-6 shadow-[0_24px_80px_rgba(0,0,0,0.45)] pa-fade-up pa-delay-1 sm:p-8">
+            <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(125deg,rgba(45,212,191,0.07),transparent_58%)]" />
+            <div className="pointer-events-none absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%22120%22%20height=%22120%22%20viewBox=%220%200%20120%20120%22%3E%3Cfilter%20id=%22n%22%3E%3CfeTurbulence%20type=%22fractalNoise%22%20baseFrequency=%220.85%22%20numOctaves=%222%22%20stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect%20width=%22120%22%20height=%22120%22%20filter=%22url(%23n)%22%20opacity=%220.05%22/%3E%3C/svg%3E')] opacity-[0.9]" />
 
             <div className="relative">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="pa-section-eyebrow">On deck</p>
+                  <p className="pa-section-eyebrow text-indigo-300/90">On deck</p>
                   <p className="mt-3 pa-headline text-[1.75rem] text-[var(--text)]">
                     Promoter runway
                   </p>
                 </div>
-                <span className="shrink-0 border border-[var(--ok)]/50 bg-[rgba(57,255,20,0.08)] px-2.5 py-1 pa-club-sub text-[0.65rem] text-[var(--ok)] shadow-[0_0_20px_rgba(57,255,20,0.25)]">
+                <span className="shrink-0 rounded-full border border-emerald-400/35 bg-emerald-400/[0.09] px-2.5 py-1 pa-club-sub text-[0.65rem] text-emerald-300 shadow-[0_0_18px_rgba(52,211,153,0.18)]">
                   Live
                 </span>
               </div>
-              <ul className="mt-8 space-y-5 text-[0.92rem] text-[var(--muted)]">
+              <ul className="mt-8 space-y-5 text-[0.92rem] text-slate-400">
                 <li className="flex gap-3.5">
-                  <span className="mt-1.5 inline-flex h-2 w-2 shrink-0 rounded-sm bg-[var(--cyan)] shadow-[0_0_16px_var(--cyan-glow)]" />
+                  <span className="mt-1.5 inline-flex h-2 w-2 shrink-0 rounded-full bg-teal-400 shadow-[0_0_14px_rgba(45,212,191,0.45)]" />
                   <div>
                     <strong className="font-bold text-[var(--text)]">Hard moderation</strong> — approvals, kills, and notes
                     logged for your crew.
                   </div>
                 </li>
                 <li className="flex gap-3.5">
-                  <span className="mt-1.5 inline-flex h-2 w-2 shrink-0 rounded-sm bg-[var(--accent-magenta)] shadow-[0_0_18px_var(--pink-glow)]" />
+                  <span className="mt-1.5 inline-flex h-2 w-2 shrink-0 rounded-full bg-fuchsia-400 shadow-[0_0_14px_rgba(232,121,249,0.35)]" />
                   <div>
                     <strong className="font-bold text-[var(--text)]">SG-first pulse</strong> — built for the island, still
                     hungry for cross-border flyers.
                   </div>
                 </li>
                 <li className="flex gap-3.5">
-                  <span className="mt-1.5 inline-flex h-2 w-2 shrink-0 rounded-sm bg-[var(--accent-violet)] shadow-[0_0_14px_var(--purple-glow)]" />
+                  <span className="mt-1.5 inline-flex h-2 w-2 shrink-0 rounded-full bg-indigo-400 shadow-[0_0_14px_rgba(129,140,248,0.35)]" />
                   <div>
                     <strong className="font-bold text-[var(--text)]">Partner airtime</strong> — brands slot in without
                     trashing the editorial grind.
                   </div>
                 </li>
               </ul>
-              <div className="mt-8 rounded-[var(--pa-radius-xl)] border border-dashed border-[var(--cyan)]/35 bg-[rgba(0,245,255,0.04)] px-5 py-4 text-[0.88rem] text-[var(--muted)]">
-                <span className="font-bold text-[var(--accent-hot)]">21+</span> where the door says so. Own your copy,
+              <div className="mt-8 rounded-2xl border border-dashed border-teal-400/22 bg-teal-400/[0.04] px-5 py-4 text-[0.88rem] text-slate-400">
+                <span className="font-bold text-rose-400">21+</span> where the door says so. Own your copy,
                 artwork, and booze rules — peep{" "}
-                <a href="/terms" className="font-semibold text-[var(--cyan)] underline-offset-2 hover:underline">
+                <a href="/terms" className="font-semibold text-teal-300 underline-offset-2 hover:underline">
                   Terms
                 </a>
                 .

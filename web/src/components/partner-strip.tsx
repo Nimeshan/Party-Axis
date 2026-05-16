@@ -21,12 +21,12 @@ export function PartnerStrip() {
     <section
       id="partner"
       aria-label="Partner placements"
-      className="border-y border-[var(--border)] bg-[linear-gradient(180deg,rgba(18,24,42,0.45),rgba(8,11,22,0.35))] backdrop-blur-sm"
+      className="border-y border-white/[0.06] bg-gradient-to-b from-[rgba(15,23,42,0.38)] via-[rgba(8,11,22,0.28)] to-transparent backdrop-blur-sm"
     >
       <div className="mx-auto w-[var(--pa-content)] py-20 md:py-24">
         <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
           <div>
-            <p className="pa-section-eyebrow">Sponsor pit</p>
+            <p className="pa-section-eyebrow text-indigo-300/85">Sponsor pit</p>
             <h2 className="pa-headline mt-4 text-[clamp(1.85rem,4vw,2.45rem)] text-[var(--text)] md:text-[2.65rem]">
               Reserved for partner stories
             </h2>
@@ -54,7 +54,7 @@ export function PartnerStrip() {
           {slots.map((slot) => (
             <article
               key={slot.name}
-              className="flex min-h-[188px] flex-col rounded-[var(--pa-radius-2xl)] border border-dashed border-[var(--border-strong)] bg-[linear-gradient(145deg,rgba(34,211,238,0.06),rgba(167,139,250,0.04)_50%,transparent)] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] backdrop-blur-md"
+              className="flex min-h-[188px] flex-col rounded-3xl border border-dashed border-white/[0.1] bg-gradient-to-br from-teal-400/[0.05] via-indigo-400/[0.04] to-transparent p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] backdrop-blur-md"
             >
               <header className="space-y-2">
                 <h3 className="text-lg font-semibold tracking-tight text-[var(--text)]">{slot.name}</h3>
