@@ -1,0 +1,42 @@
+# Party-Axis
+
+A nightlife event listing platform built for Singapore and the region. Promoters can submit events for review, and users can browse, filter, and discover what's on.
+
+---
+
+## Setting Up
+
+You need Node.js installed on your machine before starting.
+
+Clone the repo then go into the web folder:
+
+```
+cd Party-Axis/web
+npm install
+npm run dev
+```
+
+Then open http://localhost:3000 in your browser.
+
+For the backend, set up a MySQL database using the schema in `api/schema.sql` and fill in your credentials in `api/config.php`. Set the `PARTYAXIS_BACKEND_URL` environment variable to point to your PHP deployment.
+
+---
+
+## Changes Made
+
+- Replaced the color palette with a darker, easier on the eyes theme — less neon, more professional
+- Fixed a password validation bug where the frontend and backend had different minimum length rules
+- Signup form was collecting name, phone and city but never actually sending them to the server — fixed
+- Publish form had all its validation working but was never submitting to the API — wired it up properly
+- The "stay signed in" checkbox on login was being ignored — now sent to the backend
+- City filter was cutting off at 10 cities with no way to see the rest — added a show more button
+- Next.js version in package.json was set to 16.2.4 which doesn't exist — corrected to 15.2.4
+- Event end time was in the database but never showing on cards — now displayed
+- Added an event detail page at /events/[id] with the full info, map, and ticket link
+- Added a user dashboard at /dashboard to see your submitted listings and their status
+- Added WhatsApp and copy link share buttons on event cards
+- Replaced the weekend-only filter with a proper date range picker
+- Google Maps embed on the event detail page using the stored address
+- Email goes out to the promoter when their listing gets approved or rejected
+- Added a 404 page so broken URLs don't crash the app
+- Publish form now disables and shows a loading state while submitting

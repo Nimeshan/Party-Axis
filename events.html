@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="theme-color" content="#000000">
+  <title>Party Axis | Events</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="events">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="logo" href="index.html"><img src="logo.jpg" alt="Party Axis"></a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="events.html">Events</a>
+        <a href="highlights.html">Highlights</a>
+      </nav>
+      <div class="header-actions">
+        <a class="plain-btn" href="#" data-auth-open="signup" role="button">Sign up</a>
+        <a class="plain-btn" href="#" data-auth-open="login" role="button">Login</a>
+        <a class="plain-btn" href="create-event.html">Publish an Ad</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <div class="title-row">
+        <h1 class="section-title">Live Events</h1>
+        <div id="header-auth" class="header-auth"></div>
+      </div>
+
+      <div class="panel ai-panel">
+        <form id="ai-search-form" class="ai-search">
+          <label for="ai-search" class="ai-search-label">Search events</label>
+          <input id="ai-search" type="text" placeholder='Try: "beach party this weekend"' />
+          <button class="btn" type="submit">Search</button>
+        </form>
+        <p class="muted small">Describe what you want; we match it to the filters below.</p>
+      </div>
+
+      <div class="filters panel">
+        <p class="muted small" style="grid-column: 1 / -1; margin: 0 0 0.25rem;">Pick date, time range, and visibility, then press <strong>Search</strong> to update the list.</p>
+        <div>
+          <label for="filter-date">Exact date</label>
+          <input id="filter-date" type="date">
+        </div>
+        <div>
+          <label for="filter-range">Time range</label>
+          <select id="filter-range">
+            <option value="all">All upcoming</option>
+            <option value="weekend">This weekend</option>
+            <option value="week">This week</option>
+            <option value="month">This month</option>
+          </select>
+        </div>
+        <div>
+          <label for="filter-visibility">Visibility</label>
+          <select id="filter-visibility">
+            <option value="all">All</option>
+            <option value="public">Public only</option>
+            <option value="invite_only">Invite only</option>
+          </select>
+        </div>
+        <div class="filters-actions">
+          <button type="button" class="btn" id="filter-search-btn">Search</button>
+        </div>
+      </div>
+      <div id="events-grid" class="events-grid"></div>
+
+      <div class="panel newsletter">
+        <h2>Newsletter</h2>
+        <p class="muted">Get weekly drops in your city.</p>
+        <form id="newsletter-form">
+          <div class="newsletter-row">
+            <label class="sr-only" for="newsletter-email">Email</label>
+            <input id="newsletter-email" type="email" placeholder="you@example.com" autocomplete="email">
+            <button class="btn btn-small" type="button" id="newsletter-continue">Continue</button>
+          </div>
+          <div id="newsletter-consent-wrap" class="auth-step-hidden">
+            <label class="inline-check">
+              <input id="newsletter-consent" type="checkbox">
+              I agree to receive occasional marketing emails as described in the <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy</a>.
+            </label>
+            <div class="newsletter-row">
+              <button class="btn" type="submit">Subscribe</button>
+            </div>
+          </div>
+          <p id="newsletter-message" class="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>© <span id="year"></span> PartyAxis.com</div>
+      <div class="footer-links">
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+    </div>
+  </footer>
+  <script src="js/config.js"></script>
+  <script src="partyaxis.js"></script>
+</body>
+</html>

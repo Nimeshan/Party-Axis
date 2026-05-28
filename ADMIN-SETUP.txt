@@ -1,0 +1,49 @@
+PartyAxis backend admin panel setup
+
+1) Upload this package to Hostinger public_html.
+
+2) Create MySQL database in Hostinger hPanel.
+
+3) Import api/schema.sql in phpMyAdmin.
+
+4) Copy:
+   api/config.example.php
+   to:
+   api/config.php
+
+5) Edit api/config.php with Hostinger database name, username and password.
+
+6) Register your first account from the website.
+
+7) Promote yourself to admin in phpMyAdmin:
+   UPDATE users SET role = 'admin' WHERE email = 'your-email@example.com';
+
+8) Open admin panel:
+   https://yourdomain.com/bosslogin/
+
+Admin features included:
+- Dashboard counts
+- Pending / approved / rejected / all events
+- Approve event
+- Reject event with reason
+- Highlight / unhighlight event
+- Delete event
+- View users
+- Promote/demote users
+- View newsletter subscribers
+- View recent moderation audit log
+
+Important:
+- Do not leave api/config.php with example credentials.
+- Only users with role = 'admin' can access api/admin.php and api/admin-action.php.
+
+Moderator role added:
+- Moderators can access /bosslogin/.
+- Moderators can approve/reject/highlight/delete event listings.
+- Moderators cannot view subscribers or change user roles.
+
+To create a moderator from phpMyAdmin:
+   UPDATE users SET role = 'moderator' WHERE email = 'moderator@example.com';
+
+If you already imported the older schema, run this once first:
+   ALTER TABLE users MODIFY role ENUM('user', 'moderator', 'admin') NOT NULL DEFAULT 'user';

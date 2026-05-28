@@ -1,0 +1,47 @@
+PARTYAXIS HOSTINGER SETUP - START HERE
+
+1) Create MySQL database in Hostinger
+   hPanel > Websites > partyaxis.com > Databases > Management
+   Suggested database name: partyaxisdb
+   Suggested username: partyaxisuser
+   Hostinger will add your prefix, example:
+   u237325488_partyaxisdb
+   u237325488_partyaxisuser
+
+2) Edit api/config.php before or after upload
+   Change:
+   name = your full Hostinger database name
+   user = your full Hostinger database username
+   pass = your database password
+   host = localhost
+
+3) Upload website files
+   Upload all files/folders inside this package into public_html
+   public_html/index.html must exist
+   public_html/api/config.php must exist
+   public_html/bosslogin/index.html must exist
+
+4) Import SQL
+   hPanel > Databases > phpMyAdmin > open your database > Import
+   For a new empty database, import:
+   partyaxis_full_install.sql
+
+   If you already have old PartyAxis tables, import:
+   partyaxis_upgrade_existing_db.sql
+
+5) Create your admin account
+   Open partyaxis.com and register normally first.
+   Then phpMyAdmin > SQL, run:
+
+   UPDATE users SET role='admin' WHERE email='your-email@example.com';
+
+6) Add moderator
+   The person must register first. Then run:
+
+   UPDATE users SET role='moderator' WHERE email='moderator@example.com';
+
+7) Admin/moderator panel
+   partyaxis.com/bosslogin/
+
+Admin can manage events, users, subscribers and roles.
+Moderator can approve/reject/highlight/delete events only.

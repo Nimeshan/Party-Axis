@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="theme-color" content="#000000">
+  <title>Party Axis | Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="home">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="logo" href="index.html"><img src="logo.jpg" alt="Party Axis"></a>
+      <nav class="main-nav">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="events.html">Events</a>
+        <a href="highlights.html">Highlights</a>
+      </nav>
+      <div class="header-actions">
+        <a class="plain-btn" href="#" data-auth-open="signup" role="button">Sign up</a>
+        <a class="plain-btn" href="#" data-auth-open="login" role="button">Login</a>
+        <a class="plain-btn" href="create-event.html">Publish an Ad</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section home-hero">
+      <div class="container">
+        <div class="home-hero-grid">
+          <div class="home-hero-copy">
+            <p class="home-kicker muted">Discover · Singapore &amp; beyond</p>
+            <h1 class="home-title">Where events happen.</h1>
+            <p class="muted home-lead">Live listings for parties, venues, and gatherings — curated highlights and a simple way to publish your own ad.</p>
+            <div class="home-cta-row">
+              <a class="btn" href="events.html">Browse events</a>
+              <a class="btn btn-outline" href="highlights.html">Highlights</a>
+              <a class="plain-btn" href="create-event.html">Publish an Ad</a>
+            </div>
+            <div class="title-row home-auth-row">
+              <p class="muted small" style="margin:0">Signed in?</p>
+              <div id="header-auth" class="header-auth"></div>
+            </div>
+          </div>
+          <aside class="panel home-aside">
+            <h2 class="section-title" style="font-size:1.05rem">On Party Axis</h2>
+            <ul class="home-list muted">
+              <li><strong class="home-list-strong">Explore</strong> — filter by date, weekend, and visibility.</li>
+              <li><strong class="home-list-strong">Spotlight</strong> — hand-picked highlights from the community.</li>
+              <li><strong class="home-list-strong">Publish</strong> — submit for review before going live.</li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section home-hub" aria-label="Main pages">
+      <div class="container">
+        <h2 class="home-hub-title">Main pages</h2>
+        <div class="home-hub-grid">
+          <div class="home-hub-card is-current" aria-current="page">
+            <h3>Home</h3>
+            <p class="muted small home-hub-desc">Overview and quick links — you are here.</p>
+          </div>
+          <a class="home-hub-card" href="events.html">
+            <h3>Events</h3>
+            <p class="muted small home-hub-desc">Browse all live listings, search, and filters.</p>
+          </a>
+          <a class="home-hub-card" href="highlights.html">
+            <h3>Highlights</h3>
+            <p class="muted small home-hub-desc">Curated picks from the community.</p>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>© <span id="year"></span> PartyAxis.com</div>
+      <div class="footer-links">
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+      </div>
+    </div>
+  </footer>
+  <script src="js/config.js"></script>
+  <script src="partyaxis.js"></script>
+</body>
+</html>

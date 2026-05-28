@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="../favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <meta name="theme-color" content="#000000">
+  <title>Party Axis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body data-page="admin" class="admin-gate-pending">
+  <div id="admin-gate" class="admin-gate" aria-live="polite">
+    <p class="admin-gate-text muted">Checking access…</p>
+  </div>
+  <div class="admin-private">
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="logo" href="../index.html"><img src="../logo.jpg" alt="Party Axis"></a>
+      <nav class="main-nav">
+        <a href="../index.html">Home</a>
+        <a href="../events.html">Events</a>
+        <a href="../highlights.html">Highlights</a>
+      </nav>
+      <div class="header-actions">
+        <a class="plain-btn" href="#" data-auth-open="signup" role="button">Sign up</a>
+        <a class="plain-btn" href="#" data-auth-open="login" role="button">Login</a>
+        <a class="plain-btn" href="../create-event.html">Publish an Ad</a>
+        <button id="logout-btn" class="btn btn-small btn-outline" type="button">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <h1 class="section-title">Admin</h1>
+      <p class="muted">Approve listings and view recent activity.</p>
+      <div id="admin-root"></div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>© <span id="year"></span> PartyAxis.com</div>
+      <div class="footer-links">
+        <a href="../terms.html">Terms</a>
+        <a href="../privacy.html">Privacy</a>
+      </div>
+    </div>
+  </footer>
+  </div>
+  <script src="../js/config.js"></script>
+  <script src="../partyaxis.js"></script>
+</body>
+</html>
